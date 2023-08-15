@@ -2,9 +2,8 @@ const { response } = require("express");
 const jwt = require("jsonwebtoken");
 
 const validarJWT = (req, res = response, next) => {
-  // x-token headers
   const token = req.header("Authorization");
-
+  console.log(token)
   if (!token) {
     return res.status(401).json({
       ok: false,

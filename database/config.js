@@ -9,8 +9,7 @@ const sequelize = new Sequelize(process.env.DB_URI, {
   logging: false,
   define: {
     underscored: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    timestamps: false
   }
 }
 );

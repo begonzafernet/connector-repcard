@@ -5,15 +5,9 @@ const cors = require("cors");
 const path = require("path");
 const compression = require('compression');
 const sequelize = require("./database/config");
-const { Server } = require("socket.io");
-const http = require('http');
 
 // Crear el servidor de express
 const app = express();
-
-//Socket IO
-const server = http.createServer(app);
-const io = new Server(server);
 
 // Base de datos
 const dbConnection = async () => {
@@ -49,24 +43,11 @@ app.use(compression());
 
 // Rutas
 app.use("/api/auth", require("./routes/auth.routes"));
-app.use("/api/cards", require("./routes/card.routes"));
-app.use("/api/usercards", require("./routes/user_card.routes"));
-app.use("/api/userdata", require("./routes/user_data.routes"));
-app.use("/api/events", require("./routes/event.routes"));
-app.use("/api/rewards", require("./routes/reward.routes"));
-app.use("/api/posts", require("./routes/post.routes"));
-app.use("/api/notifications", require("./routes/notification.routes"));
+app.use("/api/appointments", require("./routes/appointment.routes"));
+app.use("/api/contacts", require("./routes/contact.routes"));
 app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 app.get('/', function (req, res) { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 
-// cron.schedule('0 0 0 * * *', () => {
-//   addClosersCron();
-//   addCanvassersCron();
-// });
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-});
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {
