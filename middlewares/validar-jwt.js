@@ -3,11 +3,14 @@ const jwt = require("jsonwebtoken");
 
 const validarJWT = (req, res = response, next) => {
   const authorization = req.header("Authorization");
-
-  const cut = authorization.split(" ");
   let token = null;
-  if (cut.length > 1) {
-    token = cut[1];
+
+  if (authorization !== undefined || authorization !== null) {
+    const cut = authorization.split(" ");
+
+    if (cut.length > 1) {
+      token = cut[1];
+    }
   }
 
   if (!token) {
