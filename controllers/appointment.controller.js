@@ -5,7 +5,6 @@ const createAppointment = async (req, res = response) => {
     const appointment = await Appointment.create(req.body);
 
     res.status(201).json({
-      ok: true,
       appointment
     });
   } catch (error) {

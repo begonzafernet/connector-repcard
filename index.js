@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 
 // Rutas
-app.use("/api/auth", require("./routes/auth.routes"));
+// app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/appointments", require("./routes/appointment.routes"));
 app.use("/api/contacts", require("./routes/contact.routes"));
 app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, 'public', 'index.html')); });

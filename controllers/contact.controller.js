@@ -5,7 +5,6 @@ const createContact = async (req, res = response) => {
     const contact = await Contact.create(req.body);
 
     res.status(201).json({
-      ok: true,
       contact
     });
   } catch (error) {

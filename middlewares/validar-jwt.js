@@ -2,8 +2,14 @@ const { response } = require("express");
 const jwt = require("jsonwebtoken");
 
 const validarJWT = (req, res = response, next) => {
-  const token = req.header("Authorization");
-  console.log(token)
+  const authorization = req.header("Authorization");
+
+  const cut = authorization.split(" ");
+  let token = null;
+  if (cut.length > 1) {
+    token = cut[1];
+  }
+
   if (!token) {
     return res.status(401).json({
       ok: false,
